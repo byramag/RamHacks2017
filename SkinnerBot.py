@@ -13,7 +13,7 @@ def send():
 def process():	
 	#process last output
 	input = inputStore
-	input = ""
+	inputStore = ""
 	rewardTotal = rewardCount
 	rewardCount = 0
 	#associate reward with last output
