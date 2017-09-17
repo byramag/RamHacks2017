@@ -2,16 +2,27 @@ from tkinter import *
 from socket import *
 
 rewardCount = 0
+inputStore = ""
 
 def reward():
 	rewardCount += 1
 
 def send():
-	print("hfwoueihg")
+	inputStore = INPUTFIELD.get()
 
-def process():
+def process():	
+	#process last output
+	input = inputStore
+	input = ""
+	rewardTotal = rewardCount
+	rewardCount = 0
+	#associate reward with last output
+	
+	#process input
 	
 	
+	#formulate output
+	output = ""
 	
 	print(output)
 	TK.after(50, process)
