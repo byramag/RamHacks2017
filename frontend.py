@@ -1,14 +1,23 @@
 from tkinter import *
+import telnetlib
 
 def reward():
-	print("Reward!")
+	message = "1,"
+	tn.write(bytearray(message, "ascii"))
 
 def send():
-	print("Sent message!")
+	message = "0," + INPUTFIELD.get()
+	tn.write(bytearray(message, "ascii"))
 
 def receive():
-	print("Received message!")
+	incoming = tn.read_very_lazy()
+	if incoming != "b''":
+		print(incoming)
 	TK.after(5000, receive)
+
+HOST = "127.0.0.1"
+tn = telnetlib.Telnet(HOST) #can hang here
+print("Connected successfully")
 
 TK = Tk()
 

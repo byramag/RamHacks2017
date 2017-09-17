@@ -14,11 +14,31 @@ public class LocalServer {
 		}
 	}
 	
-	public void send() {
-		
+	public void send(String message) {
+		try {
+			OutputStream sender = sock.getOutputStream();
+			byte[] buffer = message.getBytes("US-ASCII");
+			sender.write(buffer);
+		} catch (IOException ioe) {
+			System.out.println("Could not send message.");
+		}
 	}
 	
 	public String receive() {
-		return "hello";
+		try {
+			InputStream receiver = sock.getInputStream();
+			byte[] buffer = new byte[receiver.available()];
+			int bytecount = receiver.read(buffer);
+			String message = new String(buffer, "US-ASCII");
+			
+			if (bytecount > 0)
+				return message;
+			else
+				return null;
+		} catch (IOException ioe) {
+			System.out.println("Could not receive message.");
+		}
+		
+		return null;
 	}
 }
